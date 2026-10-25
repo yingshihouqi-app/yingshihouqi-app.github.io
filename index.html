@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>影视后期 · 剪辑调色混音的实操流程与参数手册</title>
+<meta name="description" content="从素材整理、粗剪精剪到调色、混音、特效合成与成片交付，影视后期每个环节的操作顺序、常用参数与工程规范一次列清，附各平台导出参数对照与排查清单。yingshihouqi-app.github.io 长期维护。">
+<meta name="keywords" content="影视后期,影视后期制作流程,达芬奇调色,剪辑节奏,音频混音,特效合成,成片交付规范,视频导出码率,yingshihouqi-app">
+<meta name="author" content="影视后期流程笔记">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#22304d">
+<meta name="geo.region" content="CN">
+<meta name="geo.placename" content="China">
+<link rel="canonical" href="https://yingshihouqi-app.github.io/">
+<link rel="alternate" hreflang="zh-Hans" href="https://yingshihouqi-app.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="影视后期">
+<meta property="og:title" content="影视后期 · 剪辑调色混音的实操流程与参数手册">
+<meta property="og:description" content="素材整理、粗剪精剪、调色、混音、合成到交付的完整顺序，配参数对照与排查清单。">
+<meta property="og:url" content="https://yingshihouqi-app.github.io/">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="影视后期 · 剪辑调色混音的实操流程与参数手册">
+<meta name="twitter:description" content="按环节拆开的影视后期流程：先后顺序、常用参数、导出规格与常见故障排查。">
+<style>
+:root{
+  --bg:#e9edf3;
+  --panel:#ffffff;
+  --ink:#1b2437;
+  --ink-soft:#5a6579;
+  --ink-faint:#8a93a4;
+  --navy:#22304d;
+  --blue:#2f6bff;
+  --cyan:#12a5a0;
+  --orange:#ff6a3d;
+  --line:#d9dfe8;
+  --wrap:1180px;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Courier New",monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:104px}
+body{
+  margin:0;
+  color:var(--ink);
+  background:var(--bg);
+  background-image:linear-gradient(90deg,rgba(47,107,255,.05) 1px,transparent 1px),linear-gradient(180deg,rgba(47,107,255,.05) 1px,transparent 1px);
+  background-size:34px 34px;
+  font:16px/1.72 "PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--orange)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--navy);color:#fff;padding:.5rem .9rem;z-index:99;border-radius:0 0 8px 0}
+.skip:focus{left:0}
+h1,h2,h3{margin:0;letter-spacing:-.2px}
+p{margin:0}
+
+.masthead{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.toolbar{display:flex;align-items:center;gap:14px;min-height:62px}
+.brand{display:flex;align-items:center;gap:11px;flex:0 0 auto}
+.logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--navy),var(--blue));position:relative;flex:0 0 auto;box-shadow:0 4px 12px rgba(47,107,255,.28)}
+.logo::before{content:"";position:absolute;inset:9px 8px;border-left:3px solid #fff;border-right:3px solid rgba(255,255,255,.55);border-radius:1px}
+.brand b{font-size:1.1rem;letter-spacing:.6px}
+.brand small{display:block;font-family:var(--mono);font-size:.66rem;color:var(--ink-faint);letter-spacing:1.4px}
+.menu{margin-left:auto;display:flex;gap:2px;flex-wrap:wrap}
+.menu a{color:var(--ink);font-size:.9rem;padding:.45rem .68rem;border-radius:7px;white-space:nowrap}
+.menu a:hover{background:#eef2fb;color:var(--blue)}
+.menu a.on{background:var(--navy);color:#fff}
+.burger{display:none;margin-left:auto;width:40px;height:38px;border:1px solid var(--line);border-radius:8px;background:#fff;align-items:center;justify-content:center;flex-direction:column;gap:4px;cursor:pointer}
+.burger i{display:block;width:17px;height:2px;background:var(--navy)}
+.pathbar{border-top:1px solid var(--line);background:#fbfcfe}
+.pathbar .wrap{display:flex;align-items:center;gap:10px;min-height:38px;flex-wrap:wrap}
+.lamps{display:flex;gap:5px;flex:0 0 auto}
+.lamps span{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.lamps span:first-child{background:var(--orange)}
+.lamps span:nth-child(2){background:var(--cyan)}
+.pathbar code{font-family:var(--mono);font-size:.82rem;color:var(--navy);word-break:break-all}
+.pathbar em{font-style:normal;font-size:.72rem;color:var(--ink-faint);letter-spacing:1px;margin-left:auto}
+#navsw{position:absolute;opacity:0;pointer-events:none}
+
+.hero{padding:34px 0 8px}
+.stage{background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 30px rgba(27,36,55,.07);overflow:hidden}
+.stage-top{padding:34px 34px 26px;background:linear-gradient(180deg,#fff,#f7f9fd);border-bottom:1px solid var(--line)}
+.kicker{display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:2.4px;color:var(--cyan);border:1px solid rgba(18,165,160,.35);border-radius:4px;padding:.2rem .6rem;background:rgba(18,165,160,.07)}
+h1.big{font-size:clamp(1.95rem,5vw,3.15rem);line-height:1.2;margin:16px 0 12px}
+h1.big u{text-decoration:none;color:var(--navy);box-shadow:inset 0 -.52em 0 rgba(255,106,61,.18)}
+.sub{color:var(--ink-soft);font-size:clamp(.95rem,1.5vw,1.06rem);max-width:64ch}
+.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.acts a{padding:.62rem 1.1rem;border-radius:8px;font-size:.92rem;font-weight:600}
+.a-pri{background:var(--navy);color:#fff}
+.a-pri:hover{background:#152239;color:#fff}
+.a-sec{border:1px solid var(--line);color:var(--ink);background:#fff}
+.a-sec:hover{border-color:var(--blue);color:var(--blue)}
+.stage-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.stat{padding:18px 22px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat b{display:block;font-size:1.5rem;font-family:var(--mono);color:var(--navy)}
+.stat span{font-size:.8rem;color:var(--ink-faint);letter-spacing:.6px}
+.ruler{height:38px;background:#fbfcfe;border-top:1px solid var(--line);display:flex;align-items:flex-end;gap:0;padding:0 2px}
+.ruler i{flex:1;height:9px;background:linear-gradient(180deg,var(--line),transparent)}
+.ruler i.maj{height:18px;background:linear-gradient(180deg,var(--navy),transparent)}
+.ruler i.hot{height:18px;background:linear-gradient(180deg,var(--orange),transparent)}
+
+section.lane{padding:40px 0 8px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px 28px 26px;box-shadow:0 6px 20px rgba(27,36,55,.05)}
+.chead{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;margin-bottom:22px;padding-bottom:18px;border-bottom:1px dashed var(--line)}
+.chead .idx{font-family:var(--mono);font-size:2rem;line-height:1;color:#dfe4ee;font-weight:700;flex:0 0 auto}
+.chead h2{font-size:clamp(1.3rem,2.7vw,1.8rem)}
+.chead p{color:var(--ink-soft);font-size:.9rem;max-width:52ch;margin-top:6px}
+.chead .chip{margin-left:auto;font-family:var(--mono);font-size:.72rem;color:var(--ink-faint);border:1px solid var(--line);border-radius:999px;padding:.22rem .7rem}
+
+.track{display:flex;gap:8px;align-items:stretch}
+.step{flex:1 1 0;border:1px solid var(--line);border-radius:12px;padding:16px 14px;background:#fbfcfe;position:relative;min-width:0}
+.step:nth-child(1){flex-grow:1.1;border-top:3px solid var(--navy)}
+.step:nth-child(2){flex-grow:1.4;border-top:3px solid var(--blue)}
+.step:nth-child(3){flex-grow:1.2;border-top:3px solid var(--cyan)}
+.step:nth-child(4){flex-grow:1;border-top:3px solid #7b8aa3}
+.step:nth-child(5){flex-grow:.9;border-top:3px solid var(--orange)}
+.step .no{font-family:var(--mono);font-size:.7rem;color:var(--ink-faint);letter-spacing:1.6px}
+.step h3{font-size:1rem;margin:6px 0 6px}
+.step p{font-size:.84rem;color:var(--ink-soft)}
+.step ul{margin:10px 0 0;padding-left:16px;font-size:.79rem;color:var(--ink-faint)}
+.step li{margin:3px 0}
+.trackhint{margin-top:16px;font-size:.82rem;color:var(--ink-faint);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.trackhint b{color:var(--navy);font-family:var(--mono)}
+
+.inspect{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.row{display:grid;grid-template-columns:112px 1fr;gap:12px;align-items:center;padding:11px 0;border-bottom:1px dotted var(--line)}
+.row:last-child{border-bottom:0}
+.row dt{font-size:.86rem;color:var(--ink);font-weight:600}
+.row dd{margin:0;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.meter{flex:1;height:8px;border-radius:999px;background:#eef1f6;overflow:hidden;min-width:80px}
+.meter i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.meter i.warm{background:linear-gradient(90deg,var(--orange),#ffb056)}
+.val{font-family:var(--mono);font-size:.8rem;color:var(--navy);min-width:82px;text-align:right}
+.row small{flex:1 0 100%;font-size:.76rem;color:var(--ink-faint);line-height:1.6}
+.tips{background:#f7f9fd;border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:0 10px 10px 0;padding:16px 18px}
+.tips h3{font-size:.98rem;margin-bottom:8px}
+.tips p{font-size:.85rem;color:var(--ink-soft);margin-bottom:8px}
+.tips ul{margin:0;padding-left:17px;font-size:.83rem;color:var(--ink-soft)}
+.tips li{margin:4px 0}
+
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.mod{border:1px solid var(--line);border-radius:12px;padding:18px;background:#fff;position:relative}
+.mod::after{content:"";position:absolute;right:14px;top:14px;width:6px;height:6px;border-radius:50%;background:var(--cyan)}
+.mod.alt::after{background:var(--orange)}
+.mod h3{font-size:1rem;margin-bottom:7px;padding-right:16px}
+.mod p{font-size:.86rem;color:var(--ink-soft)}
+.mod .kv{margin-top:12px;border-top:1px solid var(--line);padding-top:10px;font-family:var(--mono);font-size:.78rem;color:var(--ink-faint)}
+.mod .kv b{color:var(--navy)}
+
+.deliver{display:grid;grid-template-columns:1.05fr .95fr;gap:22px}
+dl.spec{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:.87rem;align-items:baseline}
+dl.spec dt{color:var(--ink-faint);white-space:nowrap}
+dl.spec dd{margin:0;color:var(--ink)}
+dl.spec dd b{font-family:var(--mono);color:var(--navy)}
+pre.cmd{margin:0;background:var(--navy);color:#d8e3ff;border-radius:12px;padding:16px 18px;font-family:var(--mono);font-size:.79rem;line-height:1.85;overflow-x:auto;white-space:pre-wrap;word-break:break-word}
+pre.cmd span{color:#8fb4ff}
+pre.cmd i{color:#ffb89f;font-style:normal}
+.warn{margin-top:14px;font-size:.82rem;color:#8a4a2c;background:#fff5ef;border:1px solid #ffd9c7;border-radius:10px;padding:12px 14px}
+
+.qa{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.qa .item{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:#fbfcfe}
+.qa h3{font-size:.97rem;margin-bottom:7px;display:flex;gap:9px}
+.qa h3 em{font-style:normal;font-family:var(--mono);color:var(--orange);font-size:.8rem}
+.qa p{font-size:.85rem;color:var(--ink-soft)}
+
+.about{display:grid;grid-template-columns:1fr .8fr;gap:22px}
+.about p{font-size:.92rem;color:var(--ink-soft);margin-bottom:12px}
+.jump{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:10px;margin-top:4px}
+.jump a{border:1px solid var(--line);border-radius:10px;padding:.66rem .78rem;font-size:.85rem;color:var(--ink);background:#fff;display:block}
+.jump a:hover{border-color:var(--navy);color:var(--navy)}
+.jump a small{display:block;color:var(--ink-faint);font-size:.72rem;margin-top:2px}
+.proj{border:1px solid var(--line);border-radius:12px;background:#fbfcfe;padding:18px}
+.proj h3{font-size:.98rem;margin-bottom:10px}
+.proj dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:.84rem}
+.proj dt{color:var(--ink-faint)}
+.proj dd{margin:0;text-align:right;font-family:var(--mono);font-size:.8rem;color:var(--navy);word-break:break-all}
+
+footer.base{margin-top:36px;background:var(--navy);color:#c9d4e8;border-top:4px solid var(--blue)}
+footer.base .wrap{padding:38px 20px 24px}
+.fcols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:24px}
+.fcols h4{margin:0 0 10px;font-size:.9rem;color:#fff;letter-spacing:1px}
+.fcols ul{margin:0;padding:0;list-style:none;font-size:.85rem}
+.fcols li{margin:5px 0}
+.fcols a{color:#c9d4e8}
+.fcols a:hover{color:#ffb89f}
+.fcols p{font-size:.84rem}
+.endbar{margin-top:26px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14);display:flex;gap:10px 22px;flex-wrap:wrap;align-items:center;font-size:.78rem;color:#93a3c0}
+.endbar .u{font-family:var(--mono);color:#ffb89f;word-break:break-all}
+.endbar .up{margin-left:auto}
+.endbar .up a{border:1px solid rgba(255,255,255,.24);border-radius:999px;padding:.24rem .8rem;color:#c9d4e8}
+.endbar .up a:hover{color:#fff;border-color:#ffb89f}
+
+@media (max-width:1000px){
+  .inspect,.deliver,.about,.qa{grid-template-columns:1fr}
+  .fcols{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  html{scroll-padding-top:96px}
+  .burger{display:flex}
+  .toolbar{flex-wrap:wrap;padding:10px 0;min-height:0}
+  .menu{display:none;order:3;width:100%;margin:6px 0 2px;flex-direction:column;gap:0}
+  .menu a{display:block;border-radius:7px;padding:.6rem .4rem;border-bottom:1px solid #f0f3f8}
+  #navsw:checked ~ .menu{display:flex}
+  .stage-top{padding:24px 20px 20px}
+  .card{padding:22px 18px 20px;border-radius:12px}
+  .stage-grid{grid-template-columns:1fr}
+  .stat{border-right:0;border-bottom:1px solid var(--line);padding:14px 20px}
+  .track{flex-direction:column}
+  .step{flex-grow:1 !important}
+  .row{grid-template-columns:1fr;gap:6px}
+  .val{text-align:left}
+  .endbar .up{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://yingshihouqi-app.github.io/#site",
+      "url":"https://yingshihouqi-app.github.io/",
+      "name":"影视后期",
+      "alternateName":"影视后期流程笔记",
+      "inLanguage":"zh-CN",
+      "description":"剪辑、调色、混音、合成与成片交付的实操流程、参数对照与排查清单。"
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://yingshihouqi-app.github.io/#page",
+      "url":"https://yingshihouqi-app.github.io/",
+      "name":"影视后期 · 剪辑调色混音的实操流程与参数手册",
+      "isPartOf":{"@id":"https://yingshihouqi-app.github.io/#site"},
+      "inLanguage":"zh-CN",
+      "breadcrumb":{"@id":"https://yingshihouqi-app.github.io/#crumb"}
+    },
+    {
+      "@type":"BreadcrumbList",
+      "@id":"https://yingshihouqi-app.github.io/#crumb",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"首页","item":"https://yingshihouqi-app.github.io/"},
+        {"@type":"ListItem","position":2,"name":"后期作业流程"},
+        {"@type":"ListItem","position":3,"name":"调色与画面统一"},
+        {"@type":"ListItem","position":4,"name":"声音与混音"},
+        {"@type":"ListItem","position":5,"name":"合成与特效"},
+        {"@type":"ListItem","position":6,"name":"输出与交付"}
+      ]
+    },
+    {
+      "@type":"HowTo",
+      "name":"一条成片的影视后期标准作业流程",
+      "description":"从素材整理到成片交付的标准顺序，包含每个环节的交付物与检查点。",
+      "totalTime":"P7D",
+      "step":[
+        {"@type":"HowToStep","position":1,"name":"素材整理与代理","text":"按卷号与机位建目录，统一命名；长素材转代理剪辑，保留原始时码与音频同步信息。"},
+        {"@type":"HowToStep","position":2,"name":"粗剪","text":"只解决结构与时长，按脚本顺序铺镜头，不做转场与调色，留足备选镜头。"},
+        {"@type":"HowToStep","position":3,"name":"精剪","text":"逐帧调接入点，统一节奏与视线匹配，确定音乐点与字幕位置，锁定画面。"},
+        {"@type":"HowToStep","position":4,"name":"调色","text":"先校色还原再风格化，统一镜头间白平衡与曝光，用示波器核对亮度与肤色范围。"},
+        {"@type":"HowToStep","position":5,"name":"混音","text":"对白降噪与音量归一化后铺环境与音乐，控制整体响度，按平台标准输出。"},
+        {"@type":"HowToStep","position":6,"name":"输出与交付","text":"按平台规格导出母版与分发版本，核对分辨率、帧率、码率与字幕轨，附交付清单。"}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/yazhou.js"></script>
+<a class="skip" href="#main">跳到主要内容</a>
+
+<header class="masthead">
+  <div class="wrap toolbar">
+    <input type="checkbox" id="navsw">
+    <span class="brand"><span class="logo" aria-hidden="true"></span><span><b>影视后期</b><small>YINGSHIHOUQI WORKFLOW</small></span></span>
+    <label class="burger" for="navsw" aria-label="展开或收起栏目导航"><i></i><i></i><i></i></label>
+    <nav class="menu" aria-label="栏目导航">
+      <a href="#flow">作业流程</a>
+      <a href="#color">调色</a>
+      <a href="#audio">声音</a>
+      <a href="#vfx">合成</a>
+      <a href="#output">交付</a>
+      <a href="#qa">疑问</a>
+      <a href="#about">关于</a>
+    </nav>
+  </div>
+  <div class="pathbar">
+    <div class="wrap">
+      <span class="lamps" aria-hidden="true"><span></span><span></span><span></span></span>
+      <code>https://yingshihouqi-app.github.io</code>
+      <em>PROJECT PATH · 流程笔记</em>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="hero">
+    <div class="wrap">
+      <div class="stage">
+        <div class="stage-top">
+          <span class="kicker">WORKFLOW NOTES / 按环节拆开讲</span>
+          <h1 class="big"><u>影视后期</u>不是把特效堆上去，<br>而是把顺序排对</h1>
+          <p class="sub">多数成片出问题不在技术难度，而在环节顺序：剪辑没锁就调色、混音排在合成之后、导出参数最后才问。这一页把素材整理、粗剪精剪、调色、混音、合成到交付的标准顺序与常用参数列出来，配一份排查清单，按着走就能少返工。</p>
+          <div class="acts">
+            <a class="a-pri" href="#flow">从作业流程看起</a>
+            <a class="a-sec" href="#output">直接查导出参数</a>
+            <a class="a-sec" href="#">下载流程清单</a>
+          </div>
+        </div>
+        <div class="stage-grid">
+          <div class="stat"><b>6</b><span>标准环节 / 含锁定节点</span></div>
+          <div class="stat"><b>23</b><span>常用参数对照条目</span></div>
+          <div class="stat"><b>9</b><span>高频故障排查项</span></div>
+        </div>
+        <div class="ruler" aria-hidden="true">
+          <i class="maj"></i><i></i><i></i><i></i><i class="hot"></i><i></i><i></i><i class="maj"></i><i></i><i></i><i></i><i class="hot"></i><i></i><i></i><i class="maj"></i><i></i><i></i><i></i><i class="hot"></i><i></i><i></i><i class="maj"></i><i></i><i></i><i></i><i class="hot"></i><i></i><i></i><i class="maj"></i><i></i><i></i><i></i><i class="hot"></i><i></i><i></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="lane" id="flow">
+    <div class="wrap">
+      <div class="card">
+        <div class="chead">
+          <span class="idx">01</span>
+          <div>
+            <h2>影视后期的标准作业流程</h2>
+            <p>环节之间不是并列关系，而是有前后依赖。上一环没锁定，下一环做得多细都是白做。</p>
+          </div>
+          <span class="chip">FLOW / 6 STEPS</span>
+        </div>
+        <div class="track">
+          <article class="step">
+            <span class="no">STEP 01</span>
+            <h3>素材整理</h3>
+            <p>按日期、卷号、机位建目录，统一命名规则，长素材转代理。</p>
+            <ul><li>保留原始时码</li><li>多机位先同步</li></ul>
+          </article>
+          <article class="step">
+            <span class="no">STEP 02</span>
+            <h3>粗剪</h3>
+            <p>只解决结构与时长，按脚本铺镜头，不做转场与调色。</p>
+            <ul><li>留备选镜头</li><li>控制总时长</li></ul>
+          </article>
+          <article class="step">
+            <span class="no">STEP 03</span>
+            <h3>精剪</h3>
+            <p>逐帧调接入点，统一节奏与视线，定音乐点与字幕位。</p>
+            <ul><li>锁定画面版本</li><li>标注特效镜头</li></ul>
+          </article>
+          <article class="step">
+            <span class="no">STEP 04</span>
+            <h3>调色</h3>
+            <p>先校色还原，再做风格化，统一镜头间的白平衡与曝光。</p>
+            <ul><li>示波器核对</li><li>肤色线检查</li></ul>
+          </article>
+          <article class="step">
+            <span class="no">STEP 05</span>
+            <h3>混音</h3>
+            <p>对白降噪与音量归一，铺环境与音乐，控制整体响度。</p>
+            <ul><li>响度达标</li><li>留静音段落</li></ul>
+          </article>
+          <article class="step">
+            <span class="no">STEP 06</span>
+            <h3>输出交付</h3>
+            <p>按平台规格导出母版与分发版，核对字幕轨与元数据。</p>
+            <ul><li>母版高码率</li><li>分发版压缩</li></ul>
+          </article>
+        </div>
+        <p class="trackhint"><b>关键点</b> 精剪锁定后才能进调色，混音要在画面锁定后进行，导出参数在项目启动时就写进交付单。<a href="#qa">常见返工原因</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="lane" id="color">
+    <div class="wrap">
+      <div class="card">
+        <div class="chead">
+          <span class="idx">02</span>
+          <div>
+            <h2>调色与画面统一</h2>
+            <p>校色解决「还原」，风格化解决「好看」，两步不能混着做，否则镜头之间永远对不齐。</p>
+          </div>
+          <span class="chip">COLOR / SCOPES</span>
+        </div>
+        <div class="inspect">
+          <div>
+            <dl>
+              <div class="row"><dt>白平衡</dt><dd><span class="meter"><i style="width:66%"></i></span><span class="val">5600K ±</span><small>用灰卡或白平衡吸管先统一，再谈风格。</small></dd></div>
+              <div class="row"><dt>曝光</dt><dd><span class="meter"><i style="width:74%"></i></span><span class="val">0.0 - 0.7</span><small>波形图主体落在 40-70 IRE，高光不削顶。</small></dd></div>
+              <div class="row"><dt>对比度</dt><dd><span class="meter"><i class="warm" style="width:52%"></i></span><span class="val">1.05 - 1.2</span><small>先靠色轮拉层次，慎用整体对比滑杆。</small></dd></div>
+              <div class="row"><dt>饱和度</dt><dd><span class="meter"><i class="warm" style="width:58%"></i></span><span class="val">50 - 62</span><small>肤色饱和过高会显脏，单独降橙色通道。</small></dd></div>
+              <div class="row"><dt>色温偏移</dt><dd><span class="meter"><i style="width:38%"></i></span><span class="val">± 8</span><small>同一场景镜头间偏移控制在个位数。</small></dd></div>
+              <div class="row"><dt>暗部抬升</dt><dd><span class="meter"><i style="width:44%"></i></span><span class="val">4 - 12</span><small>抬暗部会放大噪点，先降噪再抬。</small></dd></div>
+            </dl>
+          </div>
+          <div class="tips">
+            <h3>示波器三件事</h3>
+            <p>波形图看曝光分布，矢量图看色相与饱和，分量图看通道是否偏色。调完一个镜头就切前后镜头对比，单看一个镜头容易越调越偏。</p>
+            <ul>
+              <li>肤色线：矢量图上落在肤色指示线附近</li>
+              <li>高光：不超过 100 IRE，留播出余量</li>
+              <li>暗部：不低于 0 IRE，避免死黑断层</li>
+              <li>交付前关掉所有预览 LUT 再核对一遍</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lane" id="audio">
+    <div class="wrap">
+      <div class="card">
+        <div class="chead">
+          <span class="idx">03</span>
+          <div>
+            <h2>声音处理与混音</h2>
+            <p>观众对画质的容忍度远高于对声音的容忍度。对白听不清，画面再精细也会被判定为「不专业」。</p>
+          </div>
+          <span class="chip">AUDIO / LUFS</span>
+        </div>
+        <div class="grid3">
+          <div class="mod">
+            <h3>对白处理</h3>
+            <p>先降噪去混响，再做音量归一，最后用动态压缩稳住响度波动。</p>
+            <div class="kv">目标 <b>-16 至 -18 LUFS</b> / 峰值 -3dB</div>
+          </div>
+          <div class="mod alt">
+            <h3>环境与人声层次</h3>
+            <p>环境声垫在 -30dB 上下，音乐进人声段落时做侧链闪避，不让配乐盖住台词。</p>
+            <div class="kv">闪避量 <b>4 - 8dB</b> / 恢复 0.4s</div>
+          </div>
+          <div class="mod">
+            <h3>响度与交付</h3>
+            <p>整片综合响度按平台要求统一，短片与长片分别核对，避免上传后被二次压缩。</p>
+            <div class="kv">流媒体 <b>-14 LUFS</b> / 真峰值 -1dB</div>
+          </div>
+          <div class="mod alt">
+            <h3>音乐与音效</h3>
+            <p>音乐先找断点再铺，音效分层叠加，避免整段铺满导致听感疲劳。</p>
+            <div class="kv">音乐 <b>-22 至 -26 LUFS</b></div>
+          </div>
+          <div class="mod">
+            <h3>母版与 stems</h3>
+            <p>交付时保留分轨：对白、音乐、音效各一条，便于后续改版与多语言替换。</p>
+            <div class="kv">格式 <b>48kHz / 24bit WAV</b></div>
+          </div>
+          <div class="mod alt">
+            <h3>排查清单</h3>
+            <p>爆音、相位抵消、口齿音过重、静音段底噪，四项在混音收尾时逐条过一遍。</p>
+            <div class="kv">耳机 + 监听箱 <b>双路核对</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lane" id="vfx">
+    <div class="wrap">
+      <div class="card">
+        <div class="chead">
+          <span class="idx">04</span>
+          <div>
+            <h2>合成与特效</h2>
+            <p>合成不等于加特效，抠像、跟踪、擦除、合成这四类是出现频率最高的活，先把基础做扎实。</p>
+          </div>
+          <span class="chip">VFX / COMPOSITING</span>
+        </div>
+        <div class="grid3">
+          <div class="mod">
+            <h3>抠像</h3>
+            <p>先做边缘溢出抑制再调键控参数，绿幕布光均匀比后期修边省事得多。</p>
+            <div class="kv">拍摄建议 <b>绿幕距主体 1.5m</b></div>
+          </div>
+          <div class="mod alt">
+            <h3>跟踪</h3>
+            <p>选高对比、不易变形的区域做跟踪点，平面跟踪与三维解算分开验证。</p>
+            <div class="kv">误差 <b>小于 1px</b> 为可用</div>
+          </div>
+          <div class="mod">
+            <h3>擦除</h3>
+            <p>穿帮、威亚、麦克风入画，用帧间内容填充比逐帧修补更自然。</p>
+            <div class="kv">优先 <b>内容识别填充</b></div>
+          </div>
+          <div class="mod alt">
+            <h3>合成匹配</h3>
+            <p>匹配原素材的噪点、锐度、色差与运动模糊，否则元素会「浮」在画面上。</p>
+            <div class="kv">核对项 <b>噪点 / 模糊 / 色差</b></div>
+          </div>
+          <div class="mod">
+            <h3>渲染与缓存</h3>
+            <p>中间格式选无损或高位深，避免多次渲染累积画质损失。</p>
+            <div class="kv">中间格式 <b>EXR / ProRes</b></div>
+          </div>
+          <div class="mod alt">
+            <h3>性能与协作</h3>
+            <p>重特效镜头单独出版本，与剪辑工程解耦，改动时不影响主线时间线。</p>
+            <div class="kv">版本命名 <b>镜头号_版本_日期</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lane" id="output">
+    <div class="wrap">
+      <div class="card">
+        <div class="chead">
+          <span class="idx">05</span>
+          <div>
+            <h2>输出参数与成片交付</h2>
+            <p>导出参数在项目启动时就该写进交付单，等成片出来再问平台规格，几乎必然要重导一遍。</p>
+          </div>
+          <span class="chip">DELIVERY / EXPORT</span>
+        </div>
+        <div class="deliver">
+          <div>
+            <dl class="spec">
+              <dt>母版</dt><dd>ProRes 422 HQ / DNxHR HQ，<b>10bit 4:2:2</b></dd>
+              <dt>分发版</dt><dd>H.264 或 H.265，<b>8bit 4:2:0</b></dd>
+              <dt>分辨率</dt><dd>按母版原始比例，<b>1920×1080 / 3840×2160</b></dd>
+              <dt>帧率</dt><dd>与拍摄一致，<b>25p / 30p / 50p</b></dd>
+              <dt>1080p 码率</dt><dd>网络分发 <b>12 - 20Mbps</b>，高动态 25Mbps</dd>
+              <dt>4K 码率</dt><dd>网络分发 <b>40 - 65Mbps</b></dd>
+              <dt>音频</dt><dd>AAC <b>320kbps / 48kHz</b>，母版 WAV 24bit</dd>
+              <dt>字幕</dt><dd>外挂 SRT 独立文件，内嵌需单独出版本</dd>
+              <dt>色彩</dt><dd>Rec.709 为主，HDR 交付附 <b>HLG / PQ</b> 说明</dd>
+            </dl>
+            <p class="warn">导出后用播放器抽查首尾各两分钟，重点看帧率抖动、字幕错位与音频漂移；上传前再核对一次平台上限码率，超出会被二次压缩。</p>
+          </div>
+          <div>
+            <pre class="cmd"><span># 分发版导出参考</span>
+-c:v libx264 -preset slow
+-crf <i>18</i> -maxrate <i>20M</i> -bufsize <i>40M</i>
+-pix_fmt yuv420p -profile:v high
+-c:a aac -b:a <i>320k</i> -ar 48000
+-movflags +faststart
+
+<span># 母版导出参考</span>
+-c:v prores_ks -profile:v <i>3</i>
+-pix_fmt yuv422p10le
+-c:a pcm_s24le -ar 48000</pre>
+            <p class="trackhint" style="margin-top:12px"><b>交付清单</b> 成片文件、分轨音频、字幕文件、色彩说明、版本号与修改记录，五项齐了再交付。<a href="#">查看清单模板</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lane" id="qa">
+    <div class="wrap">
+      <div class="card">
+        <div class="chead">
+          <span class="idx">06</span>
+          <div>
+            <h2>高频疑问与排查</h2>
+            <p>返工最常见的几个原因，以及对应的处理方式，按出现频率排列。</p>
+          </div>
+          <span class="chip">QA / TROUBLESHOOT</span>
+        </div>
+        <div class="qa">
+          <div class="item">
+            <h3><em>Q1</em> 剪辑还没定稿，能先调色吗？</h3>
+            <p>不建议。镜头时长一变，调色节点与转场都要重做。可以先把白平衡与曝光的粗调存成静态预设，锁定画面后再正式进调色环节。</p>
+          </div>
+          <div class="item">
+            <h3><em>Q2</em> 导出后画质变差，问题出在哪？</h3>
+            <p>先看是否超出平台码率上限被二次压缩，再看是否做了多次有损中转。重特效镜头应走无损中间格式，只在最后一步压成分发版。</p>
+          </div>
+          <div class="item">
+            <h3><em>Q3</em> 画面有拖影或抖动怎么处理？</h3>
+            <p>多为帧率不匹配：素材 25p 放进 30p 工程会重复帧。建立工程时就确定帧率，慢动作与升格镜头单独标注，导出时保持与母版一致。</p>
+          </div>
+          <div class="item">
+            <h3><em>Q4</em> 声音忽大忽小怎么解决？</h3>
+            <p>先做对白音量归一，再用压缩器控制动态，最后按平台响度标准整体归一。单纯拉大音量只会让峰值削波，听感反而更差。</p>
+          </div>
+          <div class="item">
+            <h3><em>Q5</em> 特效元素总觉得「假」，原因是什么？</h3>
+            <p>多数是匹配没做全：噪点、锐度、色差、运动模糊、镜头畸变，缺一项就会露馅。把原素材的这些特征逐项复制到合成元素上。</p>
+          </div>
+          <div class="item">
+            <h3><em>Q6</em> 多人协作时工程文件怎么管理？</h3>
+            <p>目录结构与命名规则先定死，工程按日期加版本号另存，素材用相对路径引用。特效镜头独立工程，通过中间格式回插主线。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lane" id="about">
+    <div class="wrap">
+      <div class="card">
+        <div class="chead">
+          <span class="idx">07</span>
+          <div>
+            <h2>关于这份流程笔记</h2>
+            <p>只写能照着执行的顺序、参数与检查点，不讨论设备优劣与软件偏好。</p>
+          </div>
+          <span class="chip">ABOUT</span>
+        </div>
+        <div class="about">
+          <div>
+            <p>影视后期的坑大多不在软件操作，而在流程安排：什么时候锁定、谁先谁后、参数什么时候定。这份笔记按环节拆开，每个环节给出交付物、常用参数与检查点，方便在实际项目里对照着往下走。</p>
+            <p>内容按季度修订，遇到平台规格调整会同步更新导出参数部分。所有环节均可在本页内跳转，不必来回翻外部资料。</p>
+            <div class="jump">
+              <a href="#flow">作业流程<small>六步与锁定点</small></a>
+              <a href="#color">调色<small>示波器与参数</small></a>
+              <a href="#audio">声音<small>响度与分轨</small></a>
+              <a href="#vfx">合成<small>抠像跟踪擦除</small></a>
+              <a href="#output">交付<small>导出参数清单</small></a>
+              <a href="#qa">排查<small>六类返工原因</small></a>
+            </div>
+          </div>
+          <div class="proj">
+            <h3>站点档案</h3>
+            <dl>
+              <dt>站点名称</dt><dd>影视后期</dd>
+              <dt>官方地址</dt><dd>https://yingshihouqi-app.github.io</dd>
+              <dt>内容定位</dt><dd>流程 · 参数 · 排查</dd>
+              <dt>呈现形态</dt><dd>单页七节</dd>
+              <dt>修订节奏</dt><dd>季度更新</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="base">
+  <div class="wrap">
+    <div class="fcols">
+      <div>
+        <h4>影视后期</h4>
+        <p>剪辑、调色、混音、合成与成片交付的实操流程笔记，按环节给出顺序、参数与检查点。</p>
+      </div>
+      <div>
+        <h4>流程环节</h4>
+        <ul>
+          <li><a href="#flow">作业流程</a></li>
+          <li><a href="#color">调色与统一</a></li>
+          <li><a href="#audio">声音与混音</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>技术环节</h4>
+        <ul>
+          <li><a href="#vfx">合成与特效</a></li>
+          <li><a href="#output">输出与交付</a></li>
+          <li><a href="#qa">疑问排查</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>站点信息</h4>
+        <ul>
+          <li><a href="#">更新记录</a></li>
+          <li><a href="#">参数勘误</a></li>
+          <li><a href="#">内容索引</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="endbar">
+      <span>&copy; <span id="yr">2026</span> 影视后期流程笔记</span>
+      <span class="u">https://yingshihouqi-app.github.io</span>
+      <span>内容按季度修订</span>
+      <span class="up"><a href="#main">回到顶部</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var y=document.getElementById('yr');
+  if(y){y.textContent=new Date().getFullYear();}
+  var secs=[].slice.call(document.querySelectorAll('section.lane[id]'));
+  var links=[].slice.call(document.querySelectorAll('.menu a'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        var id=e.target.id;
+        links.forEach(function(a){
+          if(a.getAttribute('href')==='#'+id){a.classList.toggle('on',e.isIntersecting);}
+          else if(e.isIntersecting){a.classList.remove('on');}
+        });
+      });
+    },{rootMargin:'-50% 0px -45% 0px'});
+    secs.forEach(function(s){io.observe(s);});
+  }
+})();
+</script>
+</body>
+</html>
